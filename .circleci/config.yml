@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Testing on << pipeline.git.branch >>
+          command: |
+            echo "Hello from ${CIRCLE_BRANCH}"
+
+workflows:
+  run-test-suite:
+    jobs:
+      - build
+ 
